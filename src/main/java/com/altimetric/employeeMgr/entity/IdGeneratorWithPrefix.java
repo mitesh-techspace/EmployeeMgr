@@ -1,4 +1,4 @@
-package com.altimetric.entity;
+package com.altimetric.employeeMgr.entity;
 
 import java.io.Serializable;
 import java.util.Properties;
