@@ -3,11 +3,13 @@ package com.altimetric.employeeMgr.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -36,9 +38,29 @@ public class Department {
 		this.departName = departmentName;
 	}
 	
+	public String getDepartcode() {
+		return departcode;
+	}
+
+	public String getDepartName() {
+		return departName;
+	}
+
+	public List<Employee> getEmployeesInDep() {
+		return employeesInDep;
+	}
+
+	public List<Project> getProjsInDep() {
+		return projsInDep;
+	}
+
+	public Department() {
+		
+	}
+	
 	//dep-emp relation
 	
-	@ManyToMany(mappedBy = "departmentsForEmp")
+	@ManyToMany(mappedBy = "departmentsForEmp",cascade = {CascadeType.ALL})
 	private List<Employee> employeesInDep = new ArrayList<>();
 	
 	
@@ -47,15 +69,18 @@ public class Department {
 	}
 	
 	//dep-proj relation
-	@ManyToMany(mappedBy = "departmentsInProj")
-	private List<Project> projInDep = new ArrayList<>();
+	@ManyToMany(mappedBy = "departmentsOfProj")
+	private List<Project> projsInDep = new ArrayList<>();
 	
 	
 	public void addProj(Project proj) {
-		projInDep.add(proj);
+		projsInDep.add(proj);
 	}
 	
-	
+	@Override
+    public String toString() {
+        return " [name=" + departName + ", code=" + departcode +"]";
+    }
 	
 	
 
