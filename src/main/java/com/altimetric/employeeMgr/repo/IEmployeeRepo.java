@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.altimetric.employeeMgr.entity.Employee;
 
 
-public interface IEmployeeRepo extends JpaRepository<Employee, Long>{
+public interface IEmployeeRepo extends JpaRepository<Employee, String>{
 
 	
 }
